@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package polinomios;
 
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author Juan Jose Restrepo, Santiago Andres Barrera, Samuel Sosa;
  */
 public class Polinomios {
@@ -16,25 +11,45 @@ public class Polinomios {
     public static void main(String[] args) {
         int opc = 0;
         Forma1 F1;
+        
 
         String Vs[] = CrearPoli();
         F1 = new Forma1(Integer.parseInt(Vs[1]));
+        
+        
+        Forma2 F2 = new Forma2(NumeroTerminos(Vs));
+        Forma3 F3 = new Forma3();
+        
+        
         do {
             opc = Menu();
             switch (opc) {
-                case 1:
+                  case 1:
+                   
                   
                     break;
-                case 2:
+                  case 2:
                       //insertar coe y exp
                     
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 0:
-                    break;
+                      break;
+                  case 3:
+                    
+                      break;
+                  case 4:
+                    
+                      break;
+                  case 5:
+                   // Forma1 F2= new Forma1(0);
+                    // F1.sumar();
+                    
+                      break;
+                  case 6:
+                        
+                      break;
+                  case 0:
+                      System.out.println("Salir.");
+                      break;
+                    
                 default:
                     JOptionPane.showMessageDialog(null, "ERROR");
             }
@@ -42,22 +57,29 @@ public class Polinomios {
     }
     public static int Menu() {
         int opc = Integer.parseInt(JOptionPane.showInputDialog("**** Menu principal\n" +
-        "1.Insertar termino\n"+
-        "2.Eliminar termino\n"+
-        "3.reconstruir\n"+
-        "4.Evaluar\n"+
-        "5.Sumar\n"+
-        "6.Multiplicar\n"+
-        "0.salir\n"+
+        "1. Insertar termino\n"+
+        "2. Eliminar termino\n"+
+        "3. Reconstruir\n"+
+        "4. Evaluar\n"+
+        "5. Sumar\n"+
+        "6. Multiplicar\n"+
+        "0. Salir\n"+
         " "));
         return opc;
     }
 
+    public static int NumeroTerminos(String Vs[]){
+        int contador=0;
+        //Ciclo para contar terminos en Vs
+        return contador;
+    }
+    
     public static String[] CrearPoli() {
         String Cadena = JOptionPane.showInputDialog("Ingrese polinomio");
         char Vc[] = Cadena.toCharArray();
         String Vs[] = new String[Vc.length], s = "";
         int j = 0;
+        
         for (int i = 0; i < Vc.length; i++) {
             System.out.print("|" + Vc[i] + "");
 
