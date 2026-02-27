@@ -8,78 +8,51 @@ import javax.swing.JOptionPane;
 public class Polinomios {
 
     //8x^2-3x^5+2x-10
-    public static void main(String[] args) {
-        int opc = 0;
-        Forma1 F1;
-        
-
-        String Vs[] = CrearPoli();
-        F1 = new Forma1(Integer.parseInt(Vs[1]));
-        
-        
-        Forma2 F2 = new Forma2(NumeroTerminos(Vs));
-        Forma3 F3 = new Forma3();
-        
-        
-        do {
-            opc = Menu();
-            switch (opc) {
-                  case 1:
-                   
-                  
-                    break;
-                  case 2:
-                      //insertar coe y exp
-                    
-                      break;
-                  case 3:
-                    
-                      break;
-                  case 4:
-                    
-                      break;
-                  case 5:
-                   // Forma1 F2= new Forma1(0);
-                    // F1.sumar();
-                    
-                      break;
-                  case 6:
-                        
-                      break;
-                  case 0:
-                      System.out.println("Salir.");
-                      break;
-                    
-                default:
-                    JOptionPane.showMessageDialog(null, "ERROR");
-            }
-        }while(opc!=0);
-    }
     public static int Menu() {
-        int opc = Integer.parseInt(JOptionPane.showInputDialog("**** Menu principal\n" +
-        "1. Insertar termino\n"+
-        "2. Eliminar termino\n"+
-        "3. Reconstruir\n"+
-        "4. Evaluar\n"+
-        "5. Sumar\n"+
-        "6. Multiplicar\n"+
-        "0. Salir\n"+
-        " "));
+        int opc = Integer.parseInt(JOptionPane.showInputDialog("**** Menu principal\n"
+                + "1. Insertar termino\n"
+                + "2. Eliminar termino\n"
+                + "3. Mostrar\n"
+                + "4. Reconstruir\n"
+                + "5. Evaluar\n"
+                + "6. Sumar\n"
+                + "7. Multiplicar\n"
+                + "0. Salir\n"
+                + " "));
         return opc;
     }
 
-    public static int NumeroTerminos(String Vs[]){
-        int contador=0;
+    public static int MenuPrincipal() {
+        int opc = Integer.parseInt(JOptionPane.showInputDialog("**** Menu Principal\n"
+                + "1. Forma 1\n"
+                + "2. Forma 2\n"
+                + "3. Forma 3\n"
+                + "0. Salir\n"
+                + " "));
+        return opc;
+    }
+
+    public static int NumeroTerminos(String Vs[]) {
+        int contador = 0;
+        for (int i = 1; Vs[i] != null; i+2) {
+            for (int j =i+2; Vs[j] != null; j+2) {
+                if (Integer.parseInt(Vs[i]) < Integer.parseInt(Vs[j])   {
+                    int p = Integer.parseInt(Vs[i]);
+                    int q = i
+                }
+
+            }
+        }
         //Ciclo para contar terminos en Vs
         return contador;
     }
-    
+
     public static String[] CrearPoli() {
         String Cadena = JOptionPane.showInputDialog("Ingrese polinomio");
         char Vc[] = Cadena.toCharArray();
         String Vs[] = new String[Vc.length], s = "";
         int j = 0;
-        
+
         for (int i = 0; i < Vc.length; i++) {
             System.out.print("|" + Vc[i] + "");
 
@@ -128,9 +101,147 @@ public class Polinomios {
 
             System.out.print("|" + Vs[i] + "|");
         }
-        //ordenar vector    
-        
+        //ordenar vector
+
         return Vs;
     }
-// buenos dias estrellitas la tierra les dice hola
+
+    public static void main(String[] args) {
+        int opc = 0;
+        Forma1 F1;
+
+        String Vs[] = CrearPoli();
+
+        F1 = new Forma1(Integer.parseInt(Vs[1]));
+        Forma2 F2 = new Forma2(NumeroTerminos(Vs));
+        Forma3 F3 = new Forma3();
+        /////
+        do {
+            opc = MenuPrincipal();
+            switch (opc) {
+                case 1:
+                    ///
+                    do {
+                        opc = Menu();
+                        switch (opc) {
+                            case 1:
+
+                                break;
+                            case 2:
+                                //insertar coe y exp
+
+                                break;
+                            case 3:
+
+                                break;
+                            case 4:
+
+                                break;
+                            case 5:
+
+                                break;
+                            case 6:
+
+                                break;
+                            case 7:
+
+                                break;
+
+                            case 0:
+                                System.out.println("Salir.");
+                                break;
+
+                            default:
+                                JOptionPane.showMessageDialog(null, "ERROR");
+                        }
+                    } while (opc != 0);
+
+                    break;
+
+                case 2:
+                    do {
+                        opc = Menu();
+                        switch (opc) {
+                            case 1:
+
+                                break;
+                            case 2:
+                                //insertar coe y exp
+
+                                break;
+                            case 3:
+
+                                break;
+                            case 4:
+
+                                break;
+                            case 5:
+
+                                break;
+                            case 6:
+
+                                break;
+                            case 7:
+
+                                break;
+
+                            case 0:
+                                System.out.println("Salir.");
+                                break;
+
+                            default:
+                                JOptionPane.showMessageDialog(null, "ERROR");
+                        }
+                    } while (opc != 0);
+                    break;
+
+                case 3:
+                    do {
+                        opc = Menu();
+                        switch (opc) {
+                            case 1:
+
+                                break;
+                            case 2:
+                                //insertar coe y exp
+
+                                break;
+                            case 3:
+
+                                break;
+                            case 4:
+
+                                break;
+                            case 5:
+
+                                break;
+                            case 6:
+
+                                break;
+                            case 7:
+
+                                break;
+
+                            case 0:
+                                System.out.println("Salir.");
+                                break;
+
+                            default:
+                                JOptionPane.showMessageDialog(null, "ERROR");
+                        }
+                    } while (opc != 0);
+
+                    break;
+
+                case 0:
+                    System.out.println("Salir.");
+                    break;
+
+                default:
+                    JOptionPane.showMessageDialog(null, "ERROR");
+            }
+        } while (opc != 0);
+
+    }
+
 }
