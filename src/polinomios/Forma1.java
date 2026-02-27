@@ -46,6 +46,7 @@ public class Forma1 {
     public void insertar (int c, int e){
         
     }
+    
     //Llenar el polinomio
     public void LlenarPoli(String Vsc[]){
         int j=0, pos=0;
