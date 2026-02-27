@@ -25,8 +25,8 @@ public class Forma1 {
         return Du;
     }
 
-    public void setDu(int Du) {
-        this.Du = Du;
+    public void setDu(int du) {
+        this.Du = du;
     }
     public int[] getVPF1() {
         return VPF1;
@@ -47,9 +47,12 @@ public class Forma1 {
         
     }
     //Llenar el polinomio
-    public void LlenarPoli(String Vs[]){
+    public void LlenarPoli(String Vsc[]){
         int j=0, pos=0;
         
     }
+    
+    public void Sumar(){
         
+    }
 }
