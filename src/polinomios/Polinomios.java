@@ -36,7 +36,7 @@ public class Polinomios {
         int contador = 0;
         for (int i = 1; Vs[i] != null; i+2) {
             for (int j =i+2; Vs[j] != null; j+2) {
-                if (Integer.parseInt(Vs[i]) < Integer.parseInt(Vs[j])   {
+                if (Integer.parseInt(Vs[i]) < Integer.parseInt(Vs[j]))   {
                     int p = Integer.parseInt(Vs[i]);
                     int q = i
                 }
