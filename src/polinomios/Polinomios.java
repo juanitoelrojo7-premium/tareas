@@ -9,7 +9,7 @@ public class Polinomios {
 
     //8x^2-3x^5+2x-10
     public static int Menu() {
-        int opc = Integer.parseInt(JOptionPane.showInputDialog("**** Menu principal\n"
+        int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu principal -------\n"
                 + "1. Insertar termino\n"
                 + "2. Eliminar termino\n"
                 + "3. Mostrar\n"
@@ -46,7 +46,18 @@ public class Polinomios {
         //Ciclo para contar terminos en Vs
         return contador;
     }
+    
+    //METODO DE ARRIBA PERO CON LA IA
+    public static int numeroTerminos(String Vs[]) {
+    int contador = 0;
 
+    for (int i = 0; i < Vs.length; i += 2) {
+        if (Vs[i] != null) {
+            contador++;
+        }
+    }
+    return contador;
+}
     public static String[] CrearPoli() {
         String Cadena = JOptionPane.showInputDialog("Ingrese polinomio");
         char Vc[] = Cadena.toCharArray();
@@ -246,5 +257,3 @@ public class Polinomios {
     }
 
 }
-// hola mundo kajsiaJSKAJSKAjskaSJOKAjskA
-// oe socio oeeeeeeeeeeeeeeeeeeeeeeeeeee
