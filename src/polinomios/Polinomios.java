@@ -34,30 +34,21 @@ public class Polinomios {
 
     public static int NumeroTerminos(String Vs[]) {
         int contador = 0;
-        for (int i = 1; Vs[i] != null; i+=2) {
-            for (int j =i+2; Vs[j] != null; j+=2) {
-                if (Integer.parseInt(Vs[i]) < Integer.parseInt(Vs[j]))   {
-                    int p = Integer.parseInt(Vs[i]);
-                    int q = i;
-                }
-
-            }
-        }
-        //Ciclo para contar terminos en Vs
         return contador;
     }
-    
+
     //METODO DE ARRIBA PERO CON LA IA
     public static int numeroTerminos(String Vs[]) {
-    int contador = 0;
+        int contador = 2;
 
-    for (int i = 0; i < Vs.length; i += 2) {
-        if (Vs[i] != null) {
-            contador++;
+        for (int i = 1; i < Vs.length; i++) {
+            if (Vs[i] != null && !Vs[i].isEmpty()) {
+                contador++;
+            }
         }
+        return contador;
     }
-    return contador;
-}
+
     public static String[] CrearPoli() {
         String Cadena = JOptionPane.showInputDialog("Ingrese polinomio");
         char Vc[] = Cadena.toCharArray();
@@ -117,7 +108,31 @@ public class Polinomios {
         return Vs;
     }
 
+    public static void OrganizarVector(String Vs[]) {
+        int n = Integer.parseInt(Vs[0]);
+
+        for (int i = 1; i < 2 * n - 1; i += 2) {
+            for (int j = i + 2; j < 2 * n + 1; j += 2) {
+                int exp1 = Integer.parseInt(Vs[i + 1]);
+                int exp2 = Integer.parseInt(Vs[j + 1]);
+
+                if (exp1 < exp2) {
+
+                    String tempCoef = Vs[i];
+                    Vs[i] = Vs[j];
+                    Vs[j] = tempCoef;
+
+                    String tempExp = Vs[i + 1];
+                    Vs[i + 1] = Vs[j + 1];
+                    Vs[j + 1] = tempExp;
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
+
+        System.out.println(numeroTerminos(args));
         int opc = 0;
         Forma1 F1;
 
@@ -131,117 +146,15 @@ public class Polinomios {
             opc = MenuPrincipal();
             switch (opc) {
                 case 1:
-                    ///
-                    do {
-                        opc = Menu();
-                        switch (opc) {
-                            case 1:
-
-                                break;
-                            case 2:
-                                //insertar coe y exp
-
-                                break;
-                            case 3:
-
-                                break;
-                            case 4:
-
-                                break;
-                            case 5:
-
-                                break;
-                            case 6:
-
-                                break;
-                            case 7:
-
-                                break;
-
-                            case 0:
-                                System.out.println("Salir.");
-                                break;
-
-                            default:
-                                JOptionPane.showMessageDialog(null, "ERROR");
-                        }
-                    } while (opc != 0);
-
+                       OrganizarVector(Vs);
                     break;
 
                 case 2:
-                    do {
-                        opc = Menu();
-                        switch (opc) {
-                            case 1:
-
-                                break;
-                            case 2:
-                                //insertar coe y exp
-
-                                break;
-                            case 3:
-
-                                break;
-                            case 4:
-
-                                break;
-                            case 5:
-
-                                break;
-                            case 6:
-
-                                break;
-                            case 7:
-
-                                break;
-
-                            case 0:
-                                System.out.println("Salir.");
-                                break;
-
-                            default:
-                                JOptionPane.showMessageDialog(null, "ERROR");
-                        }
-                    } while (opc != 0);
+                    
                     break;
 
                 case 3:
-                    do {
-                        opc = Menu();
-                        switch (opc) {
-                            case 1:
-
-                                break;
-                            case 2:
-                                //insertar coe y exp
-
-                                break;
-                            case 3:
-
-                                break;
-                            case 4:
-
-                                break;
-                            case 5:
-
-                                break;
-                            case 6:
-
-                                break;
-                            case 7:
-
-                                break;
-
-                            case 0:
-                                System.out.println("Salir.");
-                                break;
-
-                            default:
-                                JOptionPane.showMessageDialog(null, "ERROR");
-                        }
-                    } while (opc != 0);
-
+                    
                     break;
 
                 case 0:
@@ -252,7 +165,9 @@ public class Polinomios {
                     JOptionPane.showMessageDialog(null, "ERROR");
             }
         } while (opc != 0);
-       
+
+        System.out.println(numeroTerminos(args));
+        System.out.println(numeroTerminos(args));
 
     }
 
