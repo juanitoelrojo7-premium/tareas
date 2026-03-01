@@ -247,4 +247,4 @@ public class Polinomios {
 
 }
 // hola mundo kajsiaJSKAJSKAjskaSJOKAjskA
-// oe socio
+// oe socio oeeeeeeeeeeeeeeeeeeeeeeeeeee
