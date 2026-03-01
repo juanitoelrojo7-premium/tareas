@@ -34,18 +34,14 @@ public class Polinomios {
 
     public static int NumeroTerminos(String Vs[]) {
         int contador = 0;
-        return contador;
-    }
 
-    //METODO DE ARRIBA PERO CON LA IA
-    public static int numeroTerminos(String Vs[]) {
-        int contador = 2;
-
-        for (int i = 1; i < Vs.length; i++) {
+        for (int i = 1; i < Vs.length; i+=2) {
             if (Vs[i] != null && !Vs[i].isEmpty()) {
                 contador++;
             }
+            
         }
+        System.out.println(contador);
         return contador;
     }
 
@@ -103,36 +99,44 @@ public class Polinomios {
 
             System.out.print("|" + Vs[i] + "|");
         }
-        //ordenar vector
 
+         String coeficiente = " ";
+         String exponente = " ";
+         System.out.print("\n");
+        // aqui codigo para ordenar vector //8x^2-3x^5+2x-10
+        for (int i = 1; Vs[i] != null; i += 2) {          // i apunta a exponentes
+            for (int k = i + 2; Vs[k] != null; k += 2) { // k compara exponentes
+                
+                if (Integer.parseInt(Vs[i]) < Integer.parseInt(Vs[k])) {  // ordenar de mayor a menor
+                    
+                    coeficiente = Vs[i-1];
+                    exponente = Vs[i];
+                    // Mover  directamente coeficiente y exponente
+                    Vs[i-1]=Vs[k-1];
+                    Vs[i]=Vs[k];
+                    
+                    //mover el resto a la posicion anterior
+                    Vs [k] =  exponente;
+                    Vs[k-1]= coeficiente;
+                    
+                 }
+            } 
+        }
+                
+                for (int n = 0; n < Vs.length; n++) {
+                    
+                    System.out.print("|" + Vs[n] + "|");
+                }
+                
+                NumeroTerminos(Vs);
+        
         return Vs;
     }
 
-    public static void OrganizarVector(String Vs[]) {
-        int n = Integer.parseInt(Vs[0]);
-
-        for (int i = 1; i < 2 * n - 1; i += 2) {
-            for (int j = i + 2; j < 2 * n + 1; j += 2) {
-                int exp1 = Integer.parseInt(Vs[i + 1]);
-                int exp2 = Integer.parseInt(Vs[j + 1]);
-
-                if (exp1 < exp2) {
-
-                    String tempCoef = Vs[i];
-                    Vs[i] = Vs[j];
-                    Vs[j] = tempCoef;
-
-                    String tempExp = Vs[i + 1];
-                    Vs[i + 1] = Vs[j + 1];
-                    Vs[j + 1] = tempExp;
-                }
-            }
-        }
-    }
+    
 
     public static void main(String[] args) {
 
-        System.out.println(numeroTerminos(args));
         int opc = 0;
         Forma1 F1;
 
@@ -146,15 +150,15 @@ public class Polinomios {
             opc = MenuPrincipal();
             switch (opc) {
                 case 1:
-                       OrganizarVector(Vs);
+                   
                     break;
 
                 case 2:
-                    
+
                     break;
 
                 case 3:
-                    
+
                     break;
 
                 case 0:
@@ -166,8 +170,7 @@ public class Polinomios {
             }
         } while (opc != 0);
 
-        System.out.println(numeroTerminos(args));
-        System.out.println(numeroTerminos(args));
+       
 
     }
 
