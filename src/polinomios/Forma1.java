@@ -39,6 +39,10 @@ public class Forma1 {
         this.VPF1[i] = d;
     }
     
+
+    //Insertar el polinomio
+    
+  
     //1. Insertar termino
     //2. Eliminar termino
     //3. Mostrar
@@ -67,9 +71,37 @@ public class Forma1 {
     }
     
    
+
     public void insertar (int c, int e){
+     
+        for (int i=2; i<=Du; i+=2){
+            
+        if(VPF1[i]==e){
+       VPF1[i-1]+=c;
+       
+       
+        } 
+        if(VPF1[i]>e){
+        int []Va=new int [Du+3]; 
+        for(int j=2;j<i;j+=2){
+          Va[j-1]=c;
+          Va[j]=e;
+         Va[Du+1]= VPF1[i-1];
+         Va[Du+2]=VPF1[i];
+         
+        }
+               }
+      //  if(VPF1[i]<e){
+     //   int []Va=new int [Du+3];
+      //  for (int j=2;j<=i;j+=2);
         
+      //  }
+             }
+ 
     }
+
+
+    
     
     public void eliminar(){
         
@@ -78,4 +110,5 @@ public class Forma1 {
     public void Sumar(){
         
     }
+    
 }
