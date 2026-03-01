@@ -23,7 +23,7 @@ public class Polinomios {
     }
 
     public static int MenuPrincipal() {
-        int opc = Integer.parseInt(JOptionPane.showInputDialog("**** Menu Principal\n"
+        int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Principal -------\n"
                 + "1. Forma 1\n"
                 + "2. Forma 2\n"
                 + "3. Forma 3\n"
@@ -34,11 +34,11 @@ public class Polinomios {
 
     public static int NumeroTerminos(String Vs[]) {
         int contador = 0;
-        for (int i = 1; Vs[i] != null; i+2) {
-            for (int j =i+2; Vs[j] != null; j+2) {
+        for (int i = 1; Vs[i] != null; i+=2) {
+            for (int j =i+2; Vs[j] != null; j+=2) {
                 if (Integer.parseInt(Vs[i]) < Integer.parseInt(Vs[j]))   {
                     int p = Integer.parseInt(Vs[i]);
-                    int q = i
+                    int q = i;
                 }
 
             }
