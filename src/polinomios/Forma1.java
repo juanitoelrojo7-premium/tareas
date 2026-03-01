@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package polinomios;
 
 /**
@@ -43,17 +39,42 @@ public class Forma1 {
         this.VPF1[i] = d;
     }
     
-    //Insertar el polinomio
+    //1. Insertar termino
+    //2. Eliminar termino
+    //3. Mostrar
+    //4. Reconstruir
+    //5. Evaluar
+    //6. Sumar
+    //7. Multiplicar
+    
+    //Llenar el polinomio
+    public void LlenarPoli(String Vs[]){
+         int j=0, coe=0, mayorExp=0, exp=0;
+        
+         for(int i=1; i<Vs.length; i+=2){
+         exp = Integer.parseInt(Vs[i]);
+         if(exp > mayorExp){
+             mayorExp = exp;
+         }
+         VPF1 = new int [mayorExp + 1];
+        }
+        
+         for(int i=0;  i<Vs.length ; i+=2){
+             coe= Integer.parseInt(Vs[i]);
+             exp= Integer.parseInt(Vs[i+1]);
+             VPF1[exp] = coe;
+         }
+    }
+    
+   
     public void insertar (int c, int e){
         
     }
     
-    //Llenar el polinomio
-    public void LlenarPoli(String Vsc[]){
-        int j=0, pos=0;
+    public void eliminar(){
         
     }
-    
+
     public void Sumar(){
         
     }
