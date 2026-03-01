@@ -406,3 +406,10 @@ public class Polinomios {
     }
 
 }
+/*                      => Codigo de juanjo
+                        int c = Integer.parseInt(JOptionPane.showInputDialog("Ingrese coeficiente"));
+                        int e = Integer.parseInt(JOptionPane.showInputDialog("Ingrese exponente"));
+                     
+                                 F1.insertar(c, e) ;
+
+*/
