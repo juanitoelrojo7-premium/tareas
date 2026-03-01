@@ -7,6 +7,7 @@ package polinomios;
 /**
  *
  * @author Samuel Sosa - Juan Jose Restrepo - Santiago Ayala
+ * //8x^2-3x^5+2x-10
  */
 public class Forma1 {
     //atributos
