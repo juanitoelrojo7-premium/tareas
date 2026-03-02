@@ -92,6 +92,7 @@ public class Polinomios {
         return opc;
     }
 
+    // Contar Terminos
     public static int NumeroTerminos(String Vs[]) {
         int contador = 0;
 
@@ -212,6 +213,8 @@ public class Polinomios {
                         switch (opcInsertar) {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Insertar en Forma 1");
+                                F1.MostrarPolinomio();
+                                F1.LlenarPoli(Vs);
                                 break;
 
                             case 2:
@@ -406,7 +409,8 @@ public class Polinomios {
     }
 
 }
-/*                      => Codigo de juanjo
+/*    
+                        => Codigo de juanjo
                         int c = Integer.parseInt(JOptionPane.showInputDialog("Ingrese coeficiente"));
                         int e = Integer.parseInt(JOptionPane.showInputDialog("Ingrese exponente"));
                      
