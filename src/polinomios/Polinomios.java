@@ -106,6 +106,7 @@ public class Polinomios {
         return contador;
     }
 
+    
     public static String[] CrearPoli() {
         String Cadena = JOptionPane.showInputDialog("Ingrese polinomio");
         char Vc[] = Cadena.toCharArray();
@@ -213,10 +214,12 @@ public class Polinomios {
                         switch (opcInsertar) {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Insertar en Forma 1");
+                             
+                                 
                                 F1.MostrarPolinomio();
                                 F1.LlenarPoli(Vs);
                                 break;
-
+                                
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Insertar en Forma 2");
                                 break;
@@ -289,7 +292,7 @@ public class Polinomios {
                     } while (opcMostrar != 0);
                     break;
 
-                                case 4:
+                case 4:
                     int opcReconstruir;
                     do {
                         opcReconstruir = MenuReconstruir();
@@ -416,4 +419,4 @@ public class Polinomios {
                      
                                  F1.insertar(c, e) ;
 
-*/
+ */
