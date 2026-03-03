@@ -53,31 +53,74 @@ public class Forma1 {
     //7. Multiplicar
     //Llenar el polinomio
     public void LlenarPoli(String Vs[]) {
-        int coe = 0, mayorExp = 0, exp = 0;
-
-        for (int i = 1; i < Vs.length && Vs[i] != null; i += 2) {
-            exp = Integer.parseInt(Vs[i]);
-            if (exp > mayorExp) {
-                mayorExp = exp;
+        // Contar datos validos
+        int contador = 0;
+        for (int i = 0; i < Vs.length; i++) {
+            if (Vs[i] != null) {
+                contador++;
             }
         }
 
-        VPF1 = new int[mayorExp + 1];
-        VPF1[0] = mayorExp;
+        int n = contador / 2;
 
-        for (int i = 0; i < Vs.length && Vs[i] != null; i += 2) {
-            coe = Integer.parseInt(Vs[i - 1]);
-            // exp = Integer.parseInt(Vs[i]);     
+        int coef[] = new int[n];
+        int expo[] = new int[n];
 
-            VPF1[i] = coe;
+        // Separar los coef de los exponentes
+        int j = 0;
+        for (int i = 0; i < contador; i += 2) {
+            coef[j] = Integer.parseInt(Vs[i]);
+            expo[j] = Integer.parseInt(Vs[i + 1]);
+            j++;
         }
-        /*
-    for (int i = 0; i < VPF1.length; i++) {
-        JOptionPane.showMessageDialog(null, 
-            "Exponente: " + i + "  Coeficiente: " + VPF1[i]);
-        JOptionPane.showMessageDialog(null, 
-            "Mayor Exponente: " + mayorExp ) ;
-    } /*/
+
+        // Ordenar de mayor a menor
+        for (int i = 0; i < n - 1; i++) {
+            for (int k = i + 1; k < n; k++) {
+
+                if (expo[i] < expo[k]) {
+
+                    int auxExp = expo[i];
+                    expo[i] = expo[k];
+                    expo[k] = auxExp;
+
+                    int auxCoef = coef[i];
+                    coef[i] = coef[k];
+                    coef[k] = auxCoef;
+                }
+            }
+        }
+
+        // Exponente mayor
+        int mayor = expo[0];
+
+        // Ajustar grado del polinomio
+        VPF1 = new int[mayor + 2];   // +1 para el grado en posición 0
+        VPF1[0] = mayor;
+
+        // Llenar VPF1 con expresiones faltantes
+        for (int e = mayor; e >= 0; e--) {
+
+            boolean encontrado = false;
+
+            for (int i = 0; i < n; i++) {
+                if (expo[i] == e) {
+                    VPF1[mayor - e + 1] = coef[i];
+                    encontrado = true;
+                    break;
+                }
+            }
+
+            if (!encontrado) {
+                VPF1[mayor - e + 1] = 0;
+            }
+        }
+
+        System.out.println("Vector Forma 1:");
+        for (int i = 0; i < VPF1.length; i++) {
+            System.out.print("|" + VPF1[i] + "|");
+        }
+        System.out.println();
     }
 
     public void insertar(int c, int e) {
