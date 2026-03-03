@@ -196,7 +196,7 @@ public class Forma1 {
     }
 
     public void eliminar() {
-
+           
     }
 
     public void Sumar() {
