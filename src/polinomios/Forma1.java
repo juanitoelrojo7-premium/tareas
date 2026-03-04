@@ -17,6 +17,7 @@ public class Forma1 {
         Du = Grado + 1;
         VPF1 = new int[Du + 1];
         VPF1[0] = Grado;
+
     }
 
     public int getDu() {
@@ -56,7 +57,7 @@ public class Forma1 {
         // Contar datos validos
         int contador = 0;
         for (int i = 0; i < Vs.length; i++) {
-            if (Vs[i] != null) { 
+            if (Vs[i] != null) {
                 contador++;
             }
         }
@@ -123,6 +124,7 @@ public class Forma1 {
 
         if (e < 0) {
             JOptionPane.showMessageDialog(null, "Exponente no puede ser negativo ");
+            return "error";
         }
         int Grado = VPF1[0];
         if (e > Grado) {
@@ -130,15 +132,15 @@ public class Forma1 {
             int VPF1Nuevo[] = new int[nuevoGrado + 2];
             VPF1Nuevo[0] = nuevoGrado;
             for (int i = 1; i < VPF1.length; i++) {
-                int expo = Grado - (i - 1);
-                int posi = nuevoGrado - expo + 1;
+                int expo = Grado - i;
+                int posi = nuevoGrado - expo;
                 VPF1Nuevo[posi] = VPF1[i];
             }
             VPF1 = VPF1Nuevo;
             Grado = nuevoGrado;
             Du = nuevoGrado + 1;
         }
-        int posi = Grado - e + 1;
+        int posi = (Grado - e) + 1;
         VPF1[posi] += c;
         return "Registro insertado ";
     }
@@ -150,7 +152,7 @@ public class Forma1 {
 
         for (int i = 1; i < VPF1.length; i++) {
             int coe = VPF1[i];
-            int exponente = grado - (i - 1);  // exponente realL
+            int exponente = grado - (i - 1);  // ← exponente real
 
             if (coe != 0) {
 
@@ -192,41 +194,54 @@ public class Forma1 {
             mensaje += "|" + VPF1[i] + "|";
 
         }
-        System.out.println(mensaje);
+
         JOptionPane.showMessageDialog(null, "Polinomio: " + poli);
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
     public void eliminar(String Vs[]) {
         int e = Integer.parseInt(JOptionPane.showInputDialog("Ingrese exponente a eliminar"));
-        for (int i = 1;i<Vs.length ; i+=2) {
+        for (int i = 1; i < Vs.length; i += 2) {
             int ExpAct = Integer.parseInt(Vs[i]);
-             if(ExpAct == e){
-                 Vs[i-1] = "0";
-                 
-                 
-             }
-             if(VPF1 != null &&  i - 1  < VPF1.length){
-                 VPF1[i - 1] = 0;
-             }
-             JOptionPane.showMessageDialog(null, "Exponente eliminado");
-        }
-    }
+            if (ExpAct == e) {
+                Vs[i - 1] = "0";
 
-    public void reconstruir() {
-    
+            }
+            if (VPF1 != null && i - 1 < VPF1.length) {
+                VPF1[i - 1] = 0;
+            }
+            JOptionPane.showMessageDialog(null, "Exponente eliminado");
+        }
     }
 
     public void Evaluar() {
 
     }
 
-    public void Sumar() {
-        Polinomios.CrearPoli();
+    public void Sumar(String Vs[], String Vs2[]) {
+        JOptionPane.showMessageDialog(null, "Suma de polinomios ");
+        int grado = VPF1[0];
 
+        for (int i = 1; i < VPF1.length; i++) {
+            VPF1[i] = 0;
+        }
+
+        for (int i = 0; i < Vs2.length && Vs2[i] != null; i += 2) {
+
+            int coef = Integer.parseInt(Vs2[i]);
+            int expo = Integer.parseInt(Vs2[i + 1]);
+
+            int posi = grado - expo + 1;
+
+            if (posi >= 1 && posi < VPF1.length) {
+                VPF1[posi] = coef;
+            }
+        }
+        JOptionPane.showMessageDialog(null, java.util.Arrays.toString(Vs2));
+        MostrarPolinomio();
     }
 
     public void multiplicar() {
-        Polinomios.CrearPoli();
     }
+
 }
