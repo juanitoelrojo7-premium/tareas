@@ -107,7 +107,8 @@ public class Polinomios {
     }
 
     
-    public static String[] CrearPoli() {
+    public static String[] CrearPoli( ) {
+        
         String Cadena = JOptionPane.showInputDialog("Ingrese polinomio");
         char Vc[] = Cadena.toCharArray();
         String Vs[] = new String[Vc.length], s = "";
@@ -163,6 +164,7 @@ public class Polinomios {
         String exponente = " ";
         System.out.print("\n");
         // aqui codigo para ordenar vector //8x^2-3x^5+2x-10
+        
         for (int i = 1; Vs[i] != null; i += 2) {          // i apunta a exponentes
             for (int k = i + 2; Vs[k] != null; k += 2) { // k compara exponentes
 
@@ -177,6 +179,7 @@ public class Polinomios {
                     //mover el resto a la posicion anterior
                     Vs[k] = exponente;
                     Vs[k - 1] = coeficiente;
+                
 
                 }
             }
@@ -200,6 +203,7 @@ public class Polinomios {
         String Vs[] = CrearPoli();
 
         F1 = new Forma1(Integer.parseInt(Vs[1]));
+        F1.LlenarPoli(Vs); 
         Forma2 F2 = new Forma2(NumeroTerminos(Vs));
         Forma3 F3 = new Forma3();
         /////
@@ -214,14 +218,15 @@ public class Polinomios {
                         switch (opcInsertar) {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Insertar en Forma 1");
-                             
-                                 
-                                F1.MostrarPolinomio();
-                                F1.LlenarPoli(Vs);
+                                JOptionPane.showMessageDialog(null, F1.insertar());
+                               
+ 
+                              
                                 break;
                                 
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Insertar en Forma 2");
+                                 // F2.insertar() ;
                                 break;
 
                             case 3:
@@ -229,7 +234,7 @@ public class Polinomios {
                                 break;
 
                             case 0:
-                                JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
+                                JOptionPane.showMessageDialog(null, "Volviendo al menu principal...");
                                 break;
 
                             default:
@@ -245,6 +250,7 @@ public class Polinomios {
                         switch (opcEliminar) {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Eliminar en Forma 1");
+                                F1.eliminar(Vs);
                                 break;
 
                             case 2:
@@ -272,6 +278,8 @@ public class Polinomios {
                         switch (opcMostrar) {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Mostrar en Forma 1");
+                                 F1.MostrarPolinomio();
+                                 
                                 break;
 
                             case 2:
@@ -353,6 +361,7 @@ public class Polinomios {
                         switch (opcSumar) {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Sumar en Forma 1");
+                                 F1.Sumar();
                                 break;
 
                             case 2:
@@ -380,6 +389,7 @@ public class Polinomios {
                         switch (opcMultiplicar) {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Multiplicar en Forma 1");
+                               
                                 break;
 
                             case 2:
