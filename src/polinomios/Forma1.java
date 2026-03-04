@@ -56,7 +56,7 @@ public class Forma1 {
         // Contar datos validos
         int contador = 0;
         for (int i = 0; i < Vs.length; i++) {
-            if (Vs[i] != null) {
+            if (Vs[i] != null) { 
                 contador++;
             }
         }
@@ -150,7 +150,7 @@ public class Forma1 {
 
         for (int i = 1; i < VPF1.length; i++) {
             int coe = VPF1[i];
-            int exponente = grado - (i - 1);  // ← exponente real
+            int exponente = grado - (i - 1);  // exponente realL
 
             if (coe != 0) {
 
@@ -192,7 +192,7 @@ public class Forma1 {
             mensaje += "|" + VPF1[i] + "|";
 
         }
-
+        System.out.println(mensaje);
         JOptionPane.showMessageDialog(null, "Polinomio: " + poli);
         JOptionPane.showMessageDialog(null, mensaje);
     }
@@ -214,7 +214,7 @@ public class Forma1 {
     }
 
     public void reconstruir() {
-
+    
     }
 
     public void Evaluar() {
