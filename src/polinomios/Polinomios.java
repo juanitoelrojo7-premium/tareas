@@ -226,7 +226,7 @@ public class Polinomios {
                                 
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Insertar en Forma 2");
-                                 // F2.insertar() ;
+                                 F2.F2Insertar();
                                 break;
 
                             case 3:
