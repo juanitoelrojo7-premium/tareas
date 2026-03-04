@@ -21,7 +21,7 @@ public class Polinomios {
                 + " "));
         return opc;
     }
-
+    
     public static int MenuInsertar() {
         int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Insertar -------\n"
                 + "1. Forma 1\n"
@@ -31,7 +31,7 @@ public class Polinomios {
                 + " "));
         return opc;
     }
-
+    
     public static int MenuEliminar() {
         int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Eliminar -------\n"
                 + "1. Forma 1\n"
@@ -41,7 +41,7 @@ public class Polinomios {
                 + " "));
         return opc;
     }
-
+    
     public static int MenuMostrar() {
         int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Mostrar -------\n"
                 + "1. Forma 1\n"
@@ -51,7 +51,7 @@ public class Polinomios {
                 + " "));
         return opc;
     }
-
+    
     public static int MenuReconstruir() {
         int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Reconstruir -------\n"
                 + "1. Forma 1\n"
@@ -61,7 +61,7 @@ public class Polinomios {
                 + " "));
         return opc;
     }
-
+    
     public static int MenuEvaluar() {
         int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Evaluar -------\n"
                 + "1. Forma 1\n"
@@ -71,7 +71,7 @@ public class Polinomios {
                 + " "));
         return opc;
     }
-
+    
     public static int MenuSumar() {
         int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Sumar -------\n"
                 + "1. Forma 1\n"
@@ -81,7 +81,7 @@ public class Polinomios {
                 + " "));
         return opc;
     }
-
+    
     public static int MenuMultiplicar() {
         int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Multiplicar -------\n"
                 + "1. Forma 1\n"
@@ -95,30 +95,29 @@ public class Polinomios {
     // Contar Terminos
     public static int NumeroTerminos(String Vs[]) {
         int contador = 0;
-
+        
         for (int i = 1; i < Vs.length; i += 2) {
             if (Vs[i] != null && !Vs[i].isEmpty()) {
                 contador++;
             }
-
+            
         }
         System.out.println(contador);
         return contador;
     }
-
     
-    public static String[] CrearPoli( ) {
+    public static String[] CrearPoli() {
         
         String Cadena = JOptionPane.showInputDialog("Ingrese polinomio");
         char Vc[] = Cadena.toCharArray();
         String Vs[] = new String[Vc.length], s = "";
         int j = 0;
-
+        
         for (int i = 0; i < Vc.length; i++) {
             System.out.print("|" + Vc[i] + "");
-
+            
         }
-
+        
         for (int i = 0; i < Vc.length; i++) {
             // si hay signos cuando s ya tiene algo:
             if ((Vc[i] == '-' || Vc[i] == '+') && s.isEmpty() == false) {
@@ -128,9 +127,9 @@ public class Polinomios {
                 j++;
                 s = "";
             }
-
+            
             if (Vc[i] == '-' || Character.isDigit(Vc[i])) {
-
+                
                 s = s + Vc[i];
             } else {
                 if (Vc[i] == 'x') {
@@ -156,10 +155,10 @@ public class Polinomios {
         }
         System.out.println("\n");
         for (int i = 0; i < Vs.length; i++) {
-
+            
             System.out.print("|" + Vs[i] + "|");
         }
-
+        
         String coeficiente = " ";
         String exponente = " ";
         System.out.print("\n");
@@ -179,31 +178,34 @@ public class Polinomios {
                     //mover el resto a la posicion anterior
                     Vs[k] = exponente;
                     Vs[k - 1] = coeficiente;
-                
-
+                    
                 }
             }
         }
-
+        
         for (int n = 0; n < Vs.length; n++) {
-
+            
             System.out.print("|" + Vs[n] + "|");
         }
-
+        
         NumeroTerminos(Vs);
-
+        
         return Vs;
     }
-
+    
     public static void main(String[] args) {
-
+        
         int opc = 0;
         Forma1 F1;
-
+        Forma1 F1a;
+        
         String Vs[] = CrearPoli();
-
+        
+        
         F1 = new Forma1(Integer.parseInt(Vs[1]));
-        F1.LlenarPoli(Vs); 
+        
+        F1.LlenarPoli(Vs);
+        
         Forma2 F2 = new Forma2(NumeroTerminos(Vs));
         Forma3 F3 = new Forma3();
         /////
@@ -211,7 +213,7 @@ public class Polinomios {
             opc = MenuPrincipal();
             switch (opc) {
                 case 1:
-
+                    
                     int opcInsertar;
                     do {
                         opcInsertar = MenuInsertar();
@@ -219,30 +221,28 @@ public class Polinomios {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Insertar en Forma 1");
                                 JOptionPane.showMessageDialog(null, F1.insertar());
-                               
- 
-                              
-                                break;
                                 
+                                break;
+                            
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Insertar en Forma 2");
-                                 // F2.insertar() ;
+                                JOptionPane.showMessageDialog(null, F2.F2Insertar());
                                 break;
-
+                            
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Insertar en Forma 3");
                                 break;
-
+                            
                             case 0:
-                                JOptionPane.showMessageDialog(null, "Volviendo al menu principal...");
+                                JOptionPane.showMessageDialog(null, "Volviendo al menÃº principal...");
                                 break;
-
+                            
                             default:
                                 JOptionPane.showMessageDialog(null, "ERROR");
                         }
                     } while (opcInsertar != 0);
                     break;
-
+                
                 case 2:
                     int opcEliminar;
                     do {
@@ -252,25 +252,25 @@ public class Polinomios {
                                 JOptionPane.showMessageDialog(null, "Eliminar en Forma 1");
                                 F1.eliminar(Vs);
                                 break;
-
+                            
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Eliminar en Forma 2");
                                 break;
-
+                            
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Eliminar en Forma 3");
                                 break;
-
+                            
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Volviendo...");
                                 break;
-
+                            
                             default:
                                 JOptionPane.showMessageDialog(null, "ERROR");
                         }
                     } while (opcEliminar != 0);
                     break;
-
+                
                 case 3:
                     int opcMostrar;
                     do {
@@ -278,28 +278,31 @@ public class Polinomios {
                         switch (opcMostrar) {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Mostrar en Forma 1");
-                                 F1.MostrarPolinomio();
-                                 
+                                F1.MostrarPolinomio();
+                                
                                 break;
-
+                            
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Mostrar en Forma 2");
+                                F2.LlenarPoli(Vs);
+                                F2.MostrarVPF2();
+                                
                                 break;
-
+                            
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Mostrar en Forma 3");
                                 break;
-
+                            
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Volviendo...");
                                 break;
-
+                            
                             default:
                                 JOptionPane.showMessageDialog(null, "ERROR");
                         }
                     } while (opcMostrar != 0);
                     break;
-
+                
                 case 4:
                     int opcReconstruir;
                     do {
@@ -308,25 +311,25 @@ public class Polinomios {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Reconstruir en Forma 1");
                                 break;
-
+                            
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Reconstruir en Forma 2");
                                 break;
-
+                            
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Reconstruir en Forma 3");
                                 break;
-
+                            
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Volviendo...");
                                 break;
-
+                            
                             default:
                                 JOptionPane.showMessageDialog(null, "ERROR");
                         }
                     } while (opcReconstruir != 0);
                     break;
-
+                
                 case 5:
                     int opcEvaluar;
                     do {
@@ -335,25 +338,25 @@ public class Polinomios {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Evaluar en Forma 1");
                                 break;
-
+                            
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Evaluar en Forma 2");
                                 break;
-
+                            
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Evaluar en Forma 3");
                                 break;
-
+                            
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Volviendo...");
                                 break;
-
+                            
                             default:
                                 JOptionPane.showMessageDialog(null, "ERROR");
                         }
                     } while (opcEvaluar != 0);
                     break;
-
+                
                 case 6:
                     int opcSumar;
                     do {
@@ -361,27 +364,33 @@ public class Polinomios {
                         switch (opcSumar) {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Sumar en Forma 1");
-                                 F1.Sumar();
+                                String Vs2[] = CrearPoli();
+                                Forma1 F1c = new Forma1(Integer.parseInt(Vs2[1]));
+                                F1c.LlenarPoli(Vs2);
+                                Forma1 multi = F1.Sumar(F1c);
+                                F1 = multi;
+                                multi.MostrarPolinomio();
+                                
                                 break;
-
+                            
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Sumar en Forma 2");
                                 break;
-
+                            
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Sumar en Forma 3");
                                 break;
-
+                            
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Volviendo...");
                                 break;
-
+                            
                             default:
                                 JOptionPane.showMessageDialog(null, "ERROR");
                         }
                     } while (opcSumar != 0);
                     break;
-
+                
                 case 7:
                     int opcMultiplicar;
                     do {
@@ -389,38 +398,43 @@ public class Polinomios {
                         switch (opcMultiplicar) {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Multiplicar en Forma 1");
-                               
+                                String Vs3[] = CrearPoli();
+                                Forma1 F1c = new Forma1(Integer.parseInt(Vs3[1]));
+                                F1c.LlenarPoli(Vs3);
+                                Forma1 multi = F1.multiplicar(F1c);
+                                F1 = multi;
+                                multi.MostrarPolinomio();
                                 break;
-
+                            
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Multiplicar en Forma 2");
                                 break;
-
+                            
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Multiplicar en Forma 3");
                                 break;
-
+                            
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Volviendo...");
                                 break;
-
+                            
                             default:
                                 JOptionPane.showMessageDialog(null, "ERROR");
                         }
                     } while (opcMultiplicar != 0);
                     break;
-
+                
                 case 0:
                     System.out.println("Salir.");
                     break;
-
+                
                 default:
                     JOptionPane.showMessageDialog(null, "ERROR");
             }
         } while (opc != 0);
-
+        
     }
-
+    
 }
 /*    
                         => Codigo de juanjo
