@@ -384,7 +384,7 @@ public class Polinomios {
                                 String Vs3[] = CrearPoli();
                                 Forma2 F2b = new Forma2(NumeroTerminos(Vs3));
                                 F2b.LlenarPoli(Vs3);
-                                F2.F2Sumar(F2b.getVPF2());
+                                F2.Sumar(F2b.getVPF2());
                                 F2.MostrarVPF2();
 
                                 break;
@@ -420,6 +420,13 @@ public class Polinomios {
 
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Multiplicar en Forma 2");
+                                String Vs4[] = CrearPoli();
+                                Forma2 F2b = new Forma2(NumeroTerminos(Vs4));
+                                F2b.LlenarPoli(Vs4);
+                                F2.Multiplicar(F2b.getVPF2());
+                                F2.MostrarVPF2();
+                                
+                                
                                 break;
 
                             case 3:
