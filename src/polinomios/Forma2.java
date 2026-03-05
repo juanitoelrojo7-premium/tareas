@@ -219,11 +219,11 @@ public String insertar() {
 
 public void reconstruir() {
         String poli = "";
-        int n=VPF2[0];
-        int posi=1;
+        int n = VPF2[0];
+        int posi = 1;
         for (int i = 0; i < n; i++) {
             int coe = VPF2[posi];
-            int exponente = VPF2[posi+1];
+            int exponente = VPF2[posi + 1];
 
             if (coe != 0) {
 
@@ -233,7 +233,7 @@ public void reconstruir() {
                 }
 
                 // Casos especiales
-                if (exponente == 0) { // término independiente
+                if (exponente == 0) { // tÃ©rmino independiente
                     poli += coe;
                 } else if (exponente == 1) { // exponente 1
                     if (coe == 1) {
@@ -253,7 +253,7 @@ public void reconstruir() {
                     }
                 }
             }
-            posi+=2;
+            posi += 2;
 
         }
 
@@ -275,7 +275,7 @@ public void reconstruir() {
 
     }
 
-    public void F2Sumar(int VPF2B[]) {
+    public void Sumar(int VPF2B[]) {
 
         if (VPF2 == null || VPF2B == null) {
             JOptionPane.showMessageDialog(null, "Uno de los polinomios no existe");
@@ -334,9 +334,66 @@ public void reconstruir() {
         JOptionPane.showMessageDialog(null, "Suma realizada correctamente");
     }
 
-    public void F2Multiplicar() {
+    public void Multiplicar(int VPF2B[]) {
+        int n1 = VPF2[0];
+        int n2 = VPF2B[0];
+        if (VPF2 == null || VPF2B == null) {
+            JOptionPane.showMessageDialog(null, "Uno de los polinomios no existe");
+            return;
+        }
 
+        int max = 2 * (n1 * n2);
+        int aux[] = new int[max];
+
+        int k = 1; // posicion para llenar resultado
+
+        for (int i = 1; i < VPF2.length; i += 2) {
+
+            int coe1 = VPF2[i];
+            int exp1 = VPF2[i + 1];
+
+            for (int j = 1; j < VPF2B.length; j += 2) {
+
+                int coe2 = VPF2B[j];
+                int exp2 = VPF2B[j + 1];
+                boolean existe = false;
+                int multiplicar = coe1 * coe2;
+                int suma = exp1 + exp2;
+                if (multiplicar != 0) {
+                    for (int x = 1; x < k; x += 2) {
+
+                        if (aux[x + 1] == suma) {
+                            aux[x] += multiplicar;
+                            existe = true;
+                            break;
+                        }
+
+                    }
+                    if (existe == false) {
+                        aux[k] = multiplicar;
+                        aux[k + 1] = suma;
+                        k += 2;
+                    }
+                }
+            }
+
+        }
+
+        int resultado[] = new int[k];
+        resultado[0] = (k - 1) / 2;
+
+        for (int i = 1; i < k; i++) {
+            resultado[i] = aux[i];
+        }
+
+        VPF2 = resultado;
+
+        JOptionPane.showMessageDialog(null, "Multiplicacion realizada correctamente");
     }
+}
+
+
+
+
 
     //metodos para la entrega del proyecto, construir, mostrar, eliminar........
-}
