@@ -200,13 +200,11 @@ public class Polinomios {
         Forma1 F1a;
 
         String Vs[] = CrearPoli();
-
+        
         F1 = new Forma1(Integer.parseInt(Vs[1]));
-
         F1.LlenarPoli(Vs);
-
+        
         Forma2 F2 = new Forma2(NumeroTerminos(Vs));
-
         F2.LlenarPoli(Vs);
 
         Forma3 F3 = new Forma3();
@@ -319,6 +317,7 @@ public class Polinomios {
 
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Reconstruir en Forma 2");
+                                F2.reconstruir();
                                 break;
 
                             case 3:
@@ -347,6 +346,7 @@ public class Polinomios {
 
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Evaluar en Forma 2");
+                                F2.Evaluar();
                                 break;
 
                             case 3:
@@ -381,6 +381,12 @@ public class Polinomios {
 
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Sumar en Forma 2");
+                                String Vs3[] = CrearPoli();
+                                Forma2 F2b = new Forma2(NumeroTerminos(Vs3));
+                                F2b.LlenarPoli(Vs3);
+                                F2.F2Sumar(F2b.getVPF2());
+                                F2.MostrarVPF2();
+
                                 break;
 
                             case 3:
