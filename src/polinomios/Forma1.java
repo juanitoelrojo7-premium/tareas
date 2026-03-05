@@ -125,7 +125,7 @@ public class Forma1 {
         if (e < 0) {
             JOptionPane.showMessageDialog(null, "Exponente no puede ser negativo ");
             return "error";
-        }
+        } // se crea un nuevo vector mas grande para pasar los elementos
         int Grado = VPF1[0];
         if (e > Grado) {
             int nuevoGrado = e;
@@ -139,7 +139,7 @@ public class Forma1 {
             VPF1 = VPF1Nuevo;
             Grado = nuevoGrado;
             Du = nuevoGrado + 1;
-        }
+        }//si es menor al grado se inserta o suma normalmente
         int posi = (Grado - e) + 1;
         VPF1[posi] += c;
         return "Registro insertado ";
@@ -161,7 +161,7 @@ public class Forma1 {
     public void eliminar(String Vs[]) {
         int e = Integer.parseInt(JOptionPane.showInputDialog("Ingrese exponente a eliminar"));
         int grado = VPF1[0];
-
+        //si el exponente entra en el rango
         if (e >= 0 && e < grado + 1) {
             int posi = grado - e + 1;
             if (VPF1[posi] != 0) {
@@ -171,7 +171,7 @@ public class Forma1 {
             JOptionPane.showMessageDialog(null, "Exponente eliminado");
         } else {
             JOptionPane.showMessageDialog(null, "Exponente no existe");
-        }
+        } //si el exponente a eliminar es igual al mayor grado
         if (e == grado) {
             int nuevoGrado = 0;
             int inicio = 0;
@@ -183,7 +183,7 @@ public class Forma1 {
                     break;
                 }
 
-            }
+            }//cra un nuevo vector y pasa los elementos
             int VPF1Nuevo[] = new int[nuevoGrado + 2];
             VPF1Nuevo[0] = nuevoGrado;
             Du = nuevoGrado + 1;
@@ -246,8 +246,11 @@ public class Forma1 {
             int coe = VPF1[i];
             int exp = grado - (i - 1);
             resultado += coe * Math.pow(x, exp);
+
         }
-        JOptionPane.showMessageDialog(null, "El resultado del polinomio con " + x + " como valor, es: " + resultado);
+
+        JOptionPane.showMessageDialog(null, "El resultado del polinomio con " + x + "como valor, es: " + resultado);
+
     }
 
     public Forma1 Sumar(Forma1 F2) {
