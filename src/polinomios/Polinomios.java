@@ -234,7 +234,7 @@ public class Polinomios {
                                 break;
 
                             case 0:
-                                JOptionPane.showMessageDialog(null, "Volviendo al menÃº principal...");
+                                JOptionPane.showMessageDialog(null, "Volviendo al menu principal...");
                                 break;
 
                             default:
