@@ -1,4 +1,3 @@
-
 package polinomios;
 
 /**
@@ -47,4 +46,3 @@ public void insertarFinal(int coe, int Exp){
         int j = 0;
     }
 }
-
