@@ -147,12 +147,63 @@ public class Forma1 {
 
     public void MostrarPolinomio() {
 
+        String mensaje = " ";
+        System.out.println("Vector Forma 1:");
+
+        for (int i = 0; i < VPF1.length; i++) {
+            mensaje += "|" + VPF1[i] + "|";
+
+        }
+
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+
+    public void eliminar(String Vs[]) {
+        int e = Integer.parseInt(JOptionPane.showInputDialog("Ingrese exponente a eliminar"));
+        int grado = VPF1[0];
+
+        if (e >= 0 && e < grado + 1) {
+            int posi = grado - e + 1;
+            if (VPF1[posi] != 0) {
+                Vs[posi] = "0";
+                VPF1[posi] = 0;
+            }
+            JOptionPane.showMessageDialog(null, "Exponente eliminado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Exponente no existe");
+        }
+        if (e == grado) {
+            int nuevoGrado = 0;
+            int inicio = 0;
+
+            for (int i = 1; i < VPF1.length; i++) {
+                if (VPF1[i] != 0) {
+                    nuevoGrado = grado - (i - 1);
+                    inicio = i;
+                    break;
+                }
+
+            }
+            int VPF1Nuevo[] = new int[nuevoGrado + 2];
+            VPF1Nuevo[0] = nuevoGrado;
+            Du = nuevoGrado + 1;
+            int j = 1;
+            for (int i = inicio; i < VPF1.length; i++) {
+                VPF1Nuevo[j] = VPF1[i];
+                j++;
+            }
+            VPF1 = VPF1Nuevo;
+
+        }
+    }
+
+    public void reconstruir() {
         String poli = "";
         int grado = VPF1[0];
 
         for (int i = 1; i < VPF1.length; i++) {
             int coe = VPF1[i];
-            int exponente = grado - (i - 1);  // ← exponente real
+            int exponente = grado - (i - 1);
 
             if (coe != 0) {
 
@@ -183,65 +234,101 @@ public class Forma1 {
                 }
             }
         }
-
-        if (poli.equals("")) {
-            poli = "0";
-        }
-        String mensaje = " ";
-        System.out.println("Vector Forma 1:");
-
-        for (int i = 0; i < VPF1.length; i++) {
-            mensaje += "|" + VPF1[i] + "|";
-
-        }
-
         JOptionPane.showMessageDialog(null, "Polinomio: " + poli);
-        JOptionPane.showMessageDialog(null, mensaje);
-    }
-
-    public void eliminar(String Vs[]) {
-        int e = Integer.parseInt(JOptionPane.showInputDialog("Ingrese exponente a eliminar"));
-        for (int i = 1; i < Vs.length; i += 2) {
-            int ExpAct = Integer.parseInt(Vs[i]);
-            if (ExpAct == e) {
-                Vs[i - 1] = "0";
-
-            }
-            if (VPF1 != null && i - 1 < VPF1.length) {
-                VPF1[i - 1] = 0;
-            }
-            JOptionPane.showMessageDialog(null, "Exponente eliminado");
-        }
     }
 
     public void Evaluar() {
+        int x = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero a remplazar x"));
+        int resultado = 0;
+
+        int grado = VPF1[0];
+        for (int i = 1; i < VPF1.length; i++) {
+            int coe = VPF1[i];
+            int exp = grado - (i - 1);
+            resultado += coe * Math.pow(x, exp);
+
+        }
+
+        JOptionPane.showMessageDialog(null, "El resultado del polinomio con " + x + "como valor, es: " + resultado);
 
     }
 
-    public void Sumar(String Vs[], String Vs2[]) {
-        JOptionPane.showMessageDialog(null, "Suma de polinomios ");
-        int grado = VPF1[0];
+    public Forma1 Sumar(Forma1 F2) {
+        int Grado1 = VPF1[0];
+        int Grado2 = F2.VPF1[0];
+        int Gradomax;
+
+        if (Grado1 < Grado2) {
+            Gradomax = Grado2;
+
+        } else {
+            Gradomax = Grado1;
+
+        }
+        Forma1 resultado = new Forma1(Gradomax);
 
         for (int i = 1; i < VPF1.length; i++) {
-            VPF1[i] = 0;
+            int exp = Grado1 - (i - 1);
+            int posi = Gradomax - exp + 1;
+            resultado.getVPF1()[posi] += VPF1[i];
+
+        }
+        for (int j = 1; j < F2.getVPF1().length; j++) {
+            int exp = Grado2 - (j - 1);
+            int posi = Gradomax - exp + 1;
+            resultado.getVPF1()[posi] += F2.getVPF1(j);
+
         }
 
-        for (int i = 0; i < Vs2.length && Vs2[i] != null; i += 2) {
+        return resultado;
 
-            int coef = Integer.parseInt(Vs2[i]);
-            int expo = Integer.parseInt(Vs2[i + 1]);
-
-            int posi = grado - expo + 1;
-
-            if (posi >= 1 && posi < VPF1.length) {
-                VPF1[posi] = coef;
-            }
-        }
-        JOptionPane.showMessageDialog(null, java.util.Arrays.toString(Vs2));
-        MostrarPolinomio();
     }
 
-    public void multiplicar() {
+    /* public void Sumar(String Vs[], String Vs2[]) {
+        JOptionPane.showMessageDialog(null, "Suma de polinomios ");
+        int num1, num2, suma = 0;
+
+        for (int i = 1; i < Vs.length && Vs[i] != null; i += 2) {
+            for (int k = 1; k < Vs2.length && Vs2[k] != null; k += 2) {
+                num1 = Integer.parseInt(Vs[i]);
+                num2 = Integer.parseInt(Vs2[k]);
+
+                if (num1 == num2) {
+                    suma = Integer.parseInt(Vs[i - 1]) + Integer.parseInt(Vs2[k - 1]);
+                    Vs2[k - 1] = Integer.toString(suma);
+
+                }
+
+            }
+
+        }
+
+        JOptionPane.showMessageDialog(null, Vs2);
+        
+        for (int i = 0; i < Vs2.length && Vs2[i] != null; i+=2) {
+        for(int k=1; k<Vs2.length+1 && Vs2[k] != null; k+=1 )
+            VPF1[k] = Integer.parseInt(Vs2[i]);
+            
+        }
+        MostrarPolinomio();
+    }*/
+    public Forma1 multiplicar(Forma1 F2) {
+        int grado1 = VPF1[0];
+        int grado2 = F2.getVPF1(0);
+        int gradoMax = grado1 + grado2;
+
+        Forma1 resultado = new Forma1(gradoMax);
+
+        for (int i = 1; i < VPF1.length; i++) {
+            for (int j = 1; j < F2.getVPF1().length; j++) {
+                int coef = VPF1[i] * F2.getVPF1(j);
+                int exp = grado1 - (i - 1) + grado2 - (j - 1);
+                int posi = gradoMax - exp + 1;
+                resultado.getVPF1()[posi] += coef;
+            }
+        }
+
+        return resultado;
     }
 
 }
