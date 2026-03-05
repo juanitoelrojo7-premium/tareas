@@ -162,30 +162,33 @@ public String insertar() {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void F2Eliminar() {
-
-        if (VPF2 == null) {
-            JOptionPane.showMessageDialog(null, "Polinomio no creado");
-            return;
-        }
+   public void F2Eliminar() {
 
         int e = Integer.parseInt(JOptionPane.showInputDialog("Ingrese exponente a eliminar"));
-        int n = VPF2[0];
 
+        int cantidad = VPF2[0];
         boolean encontrado = false;
+
+        // Nuevo arreglo con un termino menos 
+        int nuevo[] = new int[VPF2.length - 2];
+
+        int j = 1;
+        nuevo[0] = cantidad - 1;
 
         for (int i = 1; i < VPF2.length; i += 2) {
 
             if (VPF2[i + 1] == e) {
-
-                VPF2[i] = 0;      // coeficiente en 0
-                encontrado = true;
-                break;
+                encontrado = true; // saltamos este termino (no lo copiamos)
+            } else {
+                nuevo[j] = VPF2[i];       // coeficiente
+                nuevo[j + 1] = VPF2[i + 1]; // exponente
+                j += 2;
             }
         }
 
         if (encontrado) {
-            JOptionPane.showMessageDialog(null, "Exponente eliminado");
+            VPF2 = nuevo;
+            JOptionPane.showMessageDialog(null, "Exponente eliminado correctamente");
         } else {
             JOptionPane.showMessageDialog(null, "Exponente no existe");
         }
@@ -214,25 +217,121 @@ public String insertar() {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public void F2Reconstruir() {
+public void reconstruir() {
+        String poli = "";
+        int n=VPF2[0];
+        int posi=1;
+        for (int i = 0; i < n; i++) {
+            int coe = VPF2[posi];
+            int exponente = VPF2[posi+1];
 
-    }
+            if (coe != 0) {
 
-    public void F2Evaluar() {
-        double x = Double.parseDouble(
-                JOptionPane.showInputDialog("Ingrese el valor de X: ")
-        );
-        double resultado = 0;
-        for (int j = 1; j <= VPF2[0]; j++) {
-            int coe = VPF2[2 * j - 1]; //porque si j=1 entonces coe=1 y exp=2 && j=2 entonces coe=3 y exp=4 formula 2n-1 impar
-            int exp = VPF2[2 * j]; //formula par 2n
-            resultado += coe * Math.pow(x, exp);
+                // Signo
+                if (coe > 0 && !poli.equals("")) {
+                    poli += "+";
+                }
+
+                // Casos especiales
+                if (exponente == 0) { // término independiente
+                    poli += coe;
+                } else if (exponente == 1) { // exponente 1
+                    if (coe == 1) {
+                        poli += "x";
+                    } else if (coe == -1) {
+                        poli += "-x";
+                    } else {
+                        poli += coe + "x";
+                    }
+                } else { // exponentes mayores
+                    if (coe == 1) {
+                        poli += "x^" + exponente;
+                    } else if (coe == -1) {
+                        poli += "-x^" + exponente;
+                    } else {
+                        poli += coe + "x^" + exponente;
+                    }
+                }
+            }
+            posi+=2;
+
         }
-        JOptionPane.showMessageDialog(null, "El resultado del polinomio con " + x + "como valor, es: " + resultado);
+
+        JOptionPane.showMessageDialog(null, "Polinomio: " + poli);
     }
 
-    public void F2Sumar() {
+    public void Evaluar() {
+        int x = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero a remplazar x"));
+        int resultado = 0;
 
+        for (int i = 1; i < VPF2.length; i += 2) {
+            int coe = VPF2[i];
+            int exp = VPF2[i + 1];
+            resultado += coe * Math.pow(x, exp);
+
+        }
+
+        JOptionPane.showMessageDialog(null, "El resultado del polinomio con " + x + " como valor, es: " + resultado);
+
+    }
+
+    public void F2Sumar(int VPF2B[]) {
+
+        if (VPF2 == null || VPF2B == null) {
+            JOptionPane.showMessageDialog(null, "Uno de los polinomios no existe");
+            return;
+        }
+
+        int max = VPF2.length + VPF2B.length;
+        int aux[] = new int[max];
+
+        int k = 1; // posicion para llenar resultado
+
+        for (int i = 1; i < VPF2.length; i += 2) {
+
+            int coe1 = VPF2[i];
+            int exp1 = VPF2[i + 1];
+            int suma = coe1;
+
+            for (int j = 1; j < VPF2B.length; j += 2) {
+
+                int coe2 = VPF2B[j];
+                int exp2 = VPF2B[j + 1];
+
+                if (exp1 == exp2) {
+                    suma += coe2;
+                    VPF2B[j] = 0; // marcar como usado
+                    break;
+                }
+            }
+
+            if (suma != 0) {
+                aux[k] = suma;
+                aux[k + 1] = exp1;
+                k += 2;
+            }
+        }
+
+        // agregar los que no se usaron del segundo polinomio
+        for (int j = 1; j < VPF2B.length; j += 2) {
+
+            if (VPF2B[j] != 0) {
+                aux[k] = VPF2B[j];
+                aux[k + 1] = VPF2B[j + 1];
+                k += 2;
+            }
+        }
+
+        int resultado[] = new int[k];
+        resultado[0] = (k - 1) / 2;
+
+        for (int i = 1; i < k; i++) {
+            resultado[i] = aux[i];
+        }
+
+        VPF2 = resultado;
+
+        JOptionPane.showMessageDialog(null, "Suma realizada correctamente");
     }
 
     public void F2Multiplicar() {
