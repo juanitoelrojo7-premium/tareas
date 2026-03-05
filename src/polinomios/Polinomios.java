@@ -200,14 +200,16 @@ public class Polinomios {
         Forma1 F1a;
 
         String Vs[] = CrearPoli();
-        
+
         F1 = new Forma1(Integer.parseInt(Vs[1]));
         F1.LlenarPoli(Vs);
-        
+
         Forma2 F2 = new Forma2(NumeroTerminos(Vs));
         F2.LlenarPoli(Vs);
 
         Forma3 F3 = new Forma3();
+        F3.LlenarPoli(Vs);
+
         /////
         do {
             opc = MenuPrincipal();
@@ -230,7 +232,10 @@ public class Polinomios {
                                 break;
 
                             case 3:
-                                JOptionPane.showMessageDialog(null, "Insertar en Forma 3");
+                                int c = Integer.parseInt(JOptionPane.showInputDialog("Coeficiente"));
+                                int e = Integer.parseInt(JOptionPane.showInputDialog("Exponente"));
+
+                                F3.insertar(c, e);
                                 break;
 
                             case 0:
@@ -262,6 +267,7 @@ public class Polinomios {
 
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Eliminar en Forma 3");
+                                F3.Eliminar();
                                 break;
 
                             case 0:
@@ -293,6 +299,7 @@ public class Polinomios {
 
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Mostrar en Forma 3");
+                                F3.Mostrar();
                                 break;
 
                             case 0:
@@ -322,6 +329,7 @@ public class Polinomios {
 
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Reconstruir en Forma 3");
+                                F3.Reconstruir();
                                 break;
 
                             case 0:
@@ -351,6 +359,7 @@ public class Polinomios {
 
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Evaluar en Forma 3");
+                                F3.Evaluar();
                                 break;
 
                             case 0:
@@ -425,8 +434,7 @@ public class Polinomios {
                                 F2b.LlenarPoli(Vs4);
                                 F2.Multiplicar(F2b.getVPF2());
                                 F2.MostrarVPF2();
-                                
-                                
+
                                 break;
 
                             case 3:
