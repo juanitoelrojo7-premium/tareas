@@ -246,11 +246,8 @@ public class Forma1 {
             int coe = VPF1[i];
             int exp = grado - (i - 1);
             resultado += coe * Math.pow(x, exp);
-
         }
-
-        JOptionPane.showMessageDialog(null, "El resultado del polinomio con " + x + "como valor, es: " + resultado);
-
+        JOptionPane.showMessageDialog(null, "El resultado del polinomio con " + x + " como valor, es: " + resultado);
     }
 
     public Forma1 Sumar(Forma1 F2) {
