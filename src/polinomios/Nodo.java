@@ -6,7 +6,8 @@ package polinomios;
 
 /**
  *
- * @author user
+ * @author Juan jose, andres barrera
+ * 
  */
 public class Nodo {
     //Atributos
