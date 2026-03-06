@@ -105,7 +105,62 @@ public void LlenarPoli(String Vs[]) {
         }
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+public  Forma2 multiplicarF1F3(Forma1 F1, Forma3 F3){
+       int grado = F1.getVPF1(0);
+       int k=1;
+       int n=F1.getVPF1(0);
+      Forma2 F2 = new Forma2(k);   
+       
+       int mayor= 2*(n*n);
+       int aux[] = new int[mayor];
+       
+        for (int i = 1; i < grado+1; i += 1) {
+
+            int coe1 = F1.getVPF1(i);
+            int exp1 = grado-(i-1);
+             Nodo p= F3.getPunta();
+            while(p!=null) {
+
+                int coe2 = p.getCoe();
+                int exp2 = p.getExp();
+                boolean existe = false;
+                int multiplicar = coe1 * coe2;
+                int suma = exp1 + exp2;
+                if (multiplicar != 0) {
+                    for (int x = 1; x < k; x += 2) {
+
+                        if (aux[x + 1] == suma) {
+                            aux[x] += multiplicar;
+                            existe = true;
+                            break;
+                        }
+
+                    }
+                    if (existe == false) {
+                        aux[k] = multiplicar;
+                        aux[k + 1] = suma;
+                        k += 2;
+                    }
+                }
+                 p=p.getLiga(); 
+            }
+            
+        }
+        int resul[] = new int[k];
+        resul[0] = (k - 1) / 2;
+
+        for (int i = 1; i < k; i++) {
+            resul[i] = aux[i];
+     
+        }
+    F2.setVPF2(resul);
+        VPF2 = resul;
+   
+        return F2;
+   }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public String insertar() {
 
         if (VPF2 == null) {
