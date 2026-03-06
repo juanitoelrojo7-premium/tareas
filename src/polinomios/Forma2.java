@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author user
+ * @author Juan Jose Rojo - Santiago Barrera
  */
 public class Forma2 {
 
@@ -337,6 +337,7 @@ public void reconstruir() {
     public void Multiplicar(int VPF2B[]) {
         int n1 = VPF2[0];
         int n2 = VPF2B[0];
+
         if (VPF2 == null || VPF2B == null) {
             JOptionPane.showMessageDialog(null, "Uno de los polinomios no existe");
             return;
