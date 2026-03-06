@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Juan Jose Rojo - Samuel Sosa - Santiago Barrera
+ * @author Juan Jose Rojo - Santiago Barrera
  */
 public class Forma3 {
 
@@ -68,21 +68,16 @@ public class Forma3 {
     }
 
     public void Mostrar() {
-
         Nodo p = Punta;
         String salida = "";
 
         if (p == null) {
-            JOptionPane.showMessageDialog(null, "El polinomio está vacio");
+            JOptionPane.showMessageDialog(null, "El polinomio estÃ¡ vacio");
         }
-
         while (p != null) {
-
             salida = salida + "||" + p.getCoe() + "|" + p.getExp() + "||  " + " --> ";
-
             p = p.getLiga();
         }
-
         JOptionPane.showMessageDialog(null, salida + "nulo :> ");
     }
 
@@ -161,7 +156,40 @@ public class Forma3 {
         JOptionPane.showMessageDialog(null, poli);
         System.out.println(poli);
     }
+
+    public void sumar(Forma3 otro) {
+        Nodo p = otro.getPunta();
+
+        while (p != null) {
+            insertar(p.getCoe(), p.getExp());
+            p = p.getLiga();
+        }
+        JOptionPane.showMessageDialog(null, "Suma realizada correctamente");
+
+    }
+
+    public void multiplicar(Forma3 mult, Forma3 resultado) {
+        Nodo p = this.getPunta();
+
+        while (p != null) {
+            Nodo q = mult.getPunta();
+            while (q != null) {
+                int mul = p.getCoe() * q.getCoe();
+                int sum = p.getExp() + q.getExp();
+
+                resultado.insertar(mul, sum);
+                q = q.getLiga();
+            }
+            p = p.getLiga();
+
+        }
+
+        JOptionPane.showMessageDialog(null, "multiplicacion realizada correctamente");
+
+    }
+
 }
+     
 /*        Metodos que faltan- Juanjo hagalos :D
                 + "6. Sumar\n"
                 + "7. Multiplicar\n"
