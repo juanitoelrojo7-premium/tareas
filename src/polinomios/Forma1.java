@@ -150,8 +150,6 @@ public class Forma1 {
             pruebita = pruebita.getLiga();
         }
         
-        
-        
         return F1;
     }
 
