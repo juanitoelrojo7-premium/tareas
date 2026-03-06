@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Samuel Sosa - Juan Jose Restrepo - Santiago Ayala //8x^2-3x^5+2x-10
+ * @author Juan Jose Restrepo - Santiago Ayala //
  */
 public class Forma1 {
 
@@ -118,6 +118,43 @@ public class Forma1 {
         }
     }
 
+    public Forma1 sumarF2F3(Forma2 F2, Forma3 F3) {
+        int grado;
+
+        if (F2.getVPF2()[2] > F3.getPunta().getExp()) {
+            grado = F2.getVPF2()[2];
+        } else {
+            grado = F3.getPunta().getExp();
+        }
+
+        Forma1 F1 = new Forma1(grado);
+        
+        int V2[] = F2.getVPF2();
+
+        for (int i = 1; i < V2.length; i += 2) {
+            int coef = V2[i];
+            int exp = V2[i + 1];
+            int pos = (grado + 1) - exp; //ak busco el coef
+
+            F1.getVPF1()[pos] += coef;
+        }
+
+        Nodo pruebita = F3.getPunta();
+
+        while (pruebita != null) {
+            int coef = pruebita.getCoe();
+            int exp = pruebita.getExp();
+            int pos = (grado + 1) - exp;
+
+            F1.getVPF1()[pos] += coef;
+            pruebita = pruebita.getLiga();
+        }
+        
+        
+
+        return F1;
+    }
+
     public String insertar() {
         int c = Integer.parseInt(JOptionPane.showInputDialog("Ingrese coeficiente"));
         int e = Integer.parseInt(JOptionPane.showInputDialog("Ingrese exponente"));
@@ -183,7 +220,7 @@ public class Forma1 {
                     break;
                 }
 
-            }//cra un nuevo vector y pasa los elementos
+            } //crea un nuevo vector y pasa los elementos
             int VPF1Nuevo[] = new int[nuevoGrado + 2];
             VPF1Nuevo[0] = nuevoGrado;
             Du = nuevoGrado + 1;
@@ -281,7 +318,6 @@ public class Forma1 {
         }
 
         return resultado;
-
     }
 
     /* public void Sumar(String Vs[], String Vs2[]) {
