@@ -3,7 +3,7 @@ package polinomios;
 import javax.swing.JOptionPane;
 
 /**
- * @author Juan Jose Restrepo, Santiago Andres Barrera, Samuel Sosa;
+ * @author Juan Jose Restrepo, Santiago Andres Barrera
  */
 public class Polinomios {
 
@@ -72,15 +72,16 @@ public class Polinomios {
         return opc;
     }
 
-    public static int MenuSumar() {
-        int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Sumar -------\n"
-                + "1. Forma 1\n"
-                + "2. Forma 2\n"
-                + "3. Forma 3\n"
-                + "0. Salir\n"
-                + " "));
-        return opc;
-    }
+   public static int MenuSumar() {
+    int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Sumar -------\n"
+            + "1. Forma 1\n"
+            + "2. Forma 2\n"
+            + "3. Forma 3\n"
+            + "4. F2 + F3 = F1\n"
+            + "0. Salir\n"
+            + " "));
+    return opc;
+}
 
     public static int MenuMultiplicar() {
         int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Multiplicar -------\n"
@@ -180,6 +181,16 @@ public class Polinomios {
                     Vs[k - 1] = coeficiente;
 
                 }
+            }
+        }
+
+        for (int i = 0; i < Vs.length; i++) {
+            if ((Vc[i] == '-' || Vc[i] == '+') && s.isEmpty() == false) {
+                Vs[j] = s;
+                j++;
+                Vs[j] = "0";
+                j++;
+                s = "";
             }
         }
 
@@ -400,8 +411,19 @@ public class Polinomios {
 
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Sumar en Forma 3");
+                                String Vs4[] = CrearPoli();
+                                Forma3 F3b = new Forma3();
+                                F3b.LlenarPoli(Vs4);
+                                F3.sumar(F3b);
+                                F3.Mostrar();
                                 break;
+                            case 4:
+                                JOptionPane.showMessageDialog(null, "Sumar F2 + F3 = F1");
+                                Forma1 resultado = F1.sumarF2F3(F2, F3);
+                                F1 = resultado; // para que apunte a la memoria y se actualice en forma 1
+                                resultado.MostrarPolinomio();
 
+                                break;
                             case 0:
                                 JOptionPane.showMessageDialog(null, "Volviendo...");
                                 break;
@@ -439,6 +461,17 @@ public class Polinomios {
 
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Multiplicar en Forma 3");
+                                String Vs5[] = CrearPoli();
+
+                                Forma3 mult = new Forma3();
+                                mult.LlenarPoli(Vs5);
+
+                                Forma3 resultado = new Forma3();
+
+                                F3.multiplicar(mult, resultado);
+                                F3 = resultado;
+                                F3.Mostrar();
+
                                 break;
 
                             case 0:
