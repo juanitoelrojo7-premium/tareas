@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Juan Jose Restrepo - Santiago Ayala //
+ * @author Juan Jose Restrepo, Santiago Andres Barrera
  */
 public class Forma1 {
 
@@ -128,28 +128,28 @@ public class Forma1 {
         }
 
         Forma1 F1 = new Forma1(grado);
-        
+
         int V2[] = F2.getVPF2();
 
         for (int i = 1; i < V2.length; i += 2) {
             int coef = V2[i];
             int exp = V2[i + 1];
-            int pos = (grado + 1) - exp; //ak busco el coef
-
-            F1.getVPF1()[pos] += coef;
-        }
-
-        Nodo pruebita = F3.getPunta();
-
-        while (pruebita != null) {
-            int coef = pruebita.getCoe();
-            int exp = pruebita.getExp();
             int pos = (grado + 1) - exp;
 
             F1.getVPF1()[pos] += coef;
-            pruebita = pruebita.getLiga();
         }
-        
+
+        Nodo nodo = F3.getPunta();
+
+        while (nodo != null) {
+            int coef = nodo.getCoe();
+            int exp = nodo.getExp();
+            int pos = (grado + 1) - exp;
+
+            F1.getVPF1()[pos] += coef;
+            nodo = nodo.getLiga();
+        }
+
         return F1;
     }
 
@@ -291,61 +291,27 @@ public class Forma1 {
     public Forma1 Sumar(Forma1 F2) {
         int Grado1 = VPF1[0];
         int Grado2 = F2.VPF1[0];
-        int Gradomax;
+        int Gradomax = Math.max(Grado1, Grado2); // Valor mayor entre 2 valores
 
-        if (Grado1 < Grado2) {
-            Gradomax = Grado2;
-
-        } else {
-            Gradomax = Grado1;
-
-        }
         Forma1 resultado = new Forma1(Gradomax);
 
-        for (int i = 1; i < VPF1.length; i++) {
-            int exp = Grado1 - (i - 1);
-            int posi = Gradomax - exp + 1;
-            resultado.getVPF1()[posi] += VPF1[i];
-
+        for (int exp = Gradomax; exp >= 0; exp--) {
+            int c1 = 0;
+            int c2 = 0;
+            if (exp <= Grado1) {
+                int pos1 = Grado1 - exp + 1;
+                c1 = VPF1[pos1];
+            }
+            if (exp <= Grado2) {
+                int pos2 = Grado2 - exp + 1;
+                c2 = F2.getVPF1()[pos2];
+            }
+            int posr = Gradomax - exp + 1;
+            resultado.getVPF1()[posr] = c1 + c2;
         }
-        for (int j = 1; j < F2.getVPF1().length; j++) {
-            int exp = Grado2 - (j - 1);
-            int posi = Gradomax - exp + 1;
-            resultado.getVPF1()[posi] += F2.getVPF1(j);
-
-        }
-
         return resultado;
     }
 
-    /* public void Sumar(String Vs[], String Vs2[]) {
-        JOptionPane.showMessageDialog(null, "Suma de polinomios ");
-        int num1, num2, suma = 0;
-
-        for (int i = 1; i < Vs.length && Vs[i] != null; i += 2) {
-            for (int k = 1; k < Vs2.length && Vs2[k] != null; k += 2) {
-                num1 = Integer.parseInt(Vs[i]);
-                num2 = Integer.parseInt(Vs2[k]);
-
-                if (num1 == num2) {
-                    suma = Integer.parseInt(Vs[i - 1]) + Integer.parseInt(Vs2[k - 1]);
-                    Vs2[k - 1] = Integer.toString(suma);
-
-                }
-
-            }
-
-        }
-
-        JOptionPane.showMessageDialog(null, Vs2);
-        
-        for (int i = 0; i < Vs2.length && Vs2[i] != null; i+=2) {
-        for(int k=1; k<Vs2.length+1 && Vs2[k] != null; k+=1 )
-            VPF1[k] = Integer.parseInt(Vs2[i]);
-            
-        }
-        MostrarPolinomio();
-    }*/
     public Forma1 multiplicar(Forma1 F2) {
         int grado1 = VPF1[0];
         int grado2 = F2.getVPF1(0);
