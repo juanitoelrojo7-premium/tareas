@@ -67,7 +67,7 @@ public class Forma3 {
         ant.setLiga(x);
     }
 
-    public void Mostrar() {
+    public String Mostrar() {
         Nodo p = Punta;
         String salida = "";
 
@@ -78,7 +78,8 @@ public class Forma3 {
             salida = salida + "||" + p.getCoe() + "|" + p.getExp() + "||  " + " --> ";
             p = p.getLiga();
         }
-        JOptionPane.showMessageDialog(null, salida + "nulo :> ");
+       // JOptionPane.showMessageDialog(null, salida + "nulo :> " );
+       return salida;
     }
 
     public void Eliminar() {
@@ -134,8 +135,9 @@ public class Forma3 {
 
             p = p.getLiga();
         }
-
-        JOptionPane.showMessageDialog(null, "Resultado: " + resultado);
+         
+        JOptionPane.showMessageDialog(null, "Resultado: "  + Mostrar()+"Resultado= "+ resultado);
+        
     }
 
     public void Reconstruir() {
