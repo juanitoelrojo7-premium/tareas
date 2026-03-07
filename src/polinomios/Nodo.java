@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package polinomios;
 
 /**
  *
- * @author Juan jose, andres barrera
+ * @author Juan Jose Restrepo, Santiago Andres Barrera
  * 
  */
 public class Nodo {
