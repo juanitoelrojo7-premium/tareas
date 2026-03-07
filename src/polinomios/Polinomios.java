@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  */
 public class Polinomios {
 
-    //8x^2-3x^5+2x-10
+    //8x^2-3x^5+2x-10   -   8x^2-3x^5+2x-10
     public static int MenuPrincipal() {
         int opc = Integer.parseInt(JOptionPane.showInputDialog("------- Menu Principal-------\n"
                 + "1. Insertar termino\n"
@@ -306,7 +306,9 @@ public class Polinomios {
 
                             case 3 -> {
                                 JOptionPane.showMessageDialog(null, "Mostrar en Forma 3");
-                                F3.Mostrar();
+                               String resultado= F3.Mostrar();
+                               JOptionPane.showMessageDialog(null, resultado + " null ");
+                               
                             }
 
                             case 0 ->
@@ -365,6 +367,7 @@ public class Polinomios {
                             case 3 -> {
                                 JOptionPane.showMessageDialog(null, "Evaluar en Forma 3");
                                 F3.Evaluar();
+                                
                             }
 
                             case 0 ->
