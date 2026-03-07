@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Juan Jose Rojo - Santiago Barrera
+ * @author Juan Jose Restrepo, Santiago Andres Barrera
  */
 public class Forma2 {
 
@@ -42,15 +42,6 @@ public class Forma2 {
         this.VPF2[i] = d;
     }
 
-    //1. Insertar termino YA
-    //2. Eliminar termino YA
-    //3. Mostrar
-    //4. Reconstruir - ajustar
-    //5. Evaluar
-    //6. Sumar
-    //7. Multiplicar
-    //Llenar el polinomio YA
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public void LlenarPoli(String Vs[]) {
 
         // Contar datos validos
@@ -61,12 +52,11 @@ public void LlenarPoli(String Vs[]) {
             }
         }
 
-        int n = contador / 2; // numero de terminos reales
+        int n = contador / 2; 
 
         int coef[] = new int[n];
         int expo[] = new int[n];
 
-        // Separar coeficientes y exponentes
         int j = 0;
         for (int i = 0; i < contador; i += 2) {
             coef[j] = Integer.parseInt(Vs[i]);
@@ -105,7 +95,6 @@ public void LlenarPoli(String Vs[]) {
         }
     }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public  Forma2 multiplicarF1F3(Forma1 F1, Forma3 F3){
        int grado = F1.getVPF1(0);
        int k=1;
@@ -160,7 +149,6 @@ public  Forma2 multiplicarF1F3(Forma1 F1, Forma3 F3){
         return F2;
    }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public String insertar() {
 
         if (VPF2 == null) {
@@ -216,7 +204,6 @@ public String insertar() {
         return "Ha sido insertado de manera exitosa";
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    public void F2Eliminar() {
 
         int e = Integer.parseInt(JOptionPane.showInputDialog("Ingrese exponente a eliminar"));
@@ -249,8 +236,7 @@ public String insertar() {
         }
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void MostrarVPF2() { // este lo hice para probar si llenar poli funcionaba Adelanto: si funciona :3
+    public void MostrarVPF2() { 
 
         if (VPF2 == null) {
             System.out.println("El polinomio no ha sido creado.");
@@ -270,7 +256,6 @@ public String insertar() {
         System.out.println(); // salto de linea
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 public void reconstruir() {
         String poli = "";
@@ -447,9 +432,3 @@ public void reconstruir() {
         JOptionPane.showMessageDialog(null, "Multiplicacion realizada correctamente");
     }
 }
-
-
-
-
-
-    //metodos para la entrega del proyecto, construir, mostrar, eliminar........
