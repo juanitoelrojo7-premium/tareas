@@ -1,0 +1,176 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package arboles;
+
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+/**
+ *
+ * @author andres y Juan
+ */
+
+public class Arbol {
+
+    public static int Menu() {
+
+        int opc = Integer.parseInt(JOptionPane.showInputDialog(
+                "----- MENU ARBOL -----\n"
+                + "1. Recorrido Inorden \n"
+                + "2. Recorrido Preorden \n"
+                + "3. Recorrido Posorden \n"
+                + "4. Eliminar un nodo \n"
+                + "5. Mostrar arbol \n"
+                + "6. contar hojas \n"
+                + "7. contar padres \n"
+                + "8. insertar datos \n"
+                + "9. mostrtar el hermano de un dato \n"
+                + "10. mostrar el nivel de un dato \n"
+                + "11. mostrar La altura de un dato \n"
+                + "12. mostrar el primo hermano de un dato \n"
+                + "13. mostrar los ancestros de un dato \n"
+                + "0. Salir \n\n"
+                + "Seleccione una opcion:"
+        ));
+
+        return opc;
+    }
+
+    public static void main(String[] args) {
+
+        ArbolBinario arbol = new ArbolBinario();
+
+        arbol.IngresarArbol();
+
+        int opc;
+
+        do {
+            opc = Menu();
+
+            switch (opc) {
+                case 1:
+                    System.out.println("Inorden: ");
+                    arbol.inorden(arbol.raiz);
+                    System.out.println();
+                    break;
+
+                case 2:
+                    System.out.println("Preorden: ");
+                    arbol.preorden(arbol.raiz);
+                    System.out.println();
+                    break;
+
+                case 3:
+                    System.out.println("Posorden: ");
+                    arbol.posorden(arbol.raiz);
+                    System.out.println();
+                    break;
+
+                case 4:
+                    String texto = JOptionPane.showInputDialog("Ingrese la letra a eliminar:");
+                    char letra = texto.charAt(0);
+                    arbol.raiz = arbol.eliminar(arbol.raiz, letra);
+                    System.out.println("Nodo eliminado correctamente");
+                    break;
+
+                case 5:
+                     JFrame ventana = new JFrame("Árbol Binario");
+                    DibujarArbol panel = new DibujarArbol(arbol.raiz);
+                    ventana.add(panel);
+                    ventana.setSize(900, 700);
+                    ventana.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    ventana.setVisible(true);
+                    break;
+                case 6:
+                    int hojas = arbol.contarHojas(arbol.raiz);
+                    System.out.println("Cantidad de hojas: " + hojas);
+                    break;
+
+                case 7:
+                    int padres = arbol.contarPadres(arbol.raiz);
+                    System.out.println("Cantidad de padres: " + padres);
+                    break;
+
+                case 8:
+                    String date = JOptionPane.showInputDialog("Ingrese la letra que insertaremos:");
+                    char dto = date.charAt(0);
+                    arbol.insertar(arbol.raiz, dto);
+                    
+
+                    break;
+
+                case 9:
+                    String dat = JOptionPane.showInputDialog("Ingrese la letra a la que le buscaremos su hermano:");
+                    char dato = dat.charAt(0);
+                    arbol.mybrother(arbol.raiz, dato);
+
+                    break;
+
+                case 10:
+                    String da = JOptionPane.showInputDialog("Ingrese la letra a la que le buscaremos su nivel:");
+                    char dati = da.charAt(0);
+                    int nivel = 1;
+                    int nivelito = arbol.nivel(arbol.raiz, dati, nivel);
+
+                    if (nivelito == -1) {
+                        System.out.println("eso no existe parcero");
+                    } else {
+                        System.out.println("el nivel es: " + nivelito);
+                    }
+                    break;
+
+                case 11:
+
+                    String d = JOptionPane.showInputDialog("Ingrese la letra a la que le buscaremos su altura:"
+                    );
+                    char dt = d.charAt(0);
+                    int nivelNodo = arbol.nivel(arbol.raiz, dt, 0);
+                    if (nivelNodo == -1) {
+                        System.out.println("eso no existe parcero");
+                    } else {
+                        int alturaTotal = arbol.altura(arbol.raiz);
+                        int alturaNodo = alturaTotal - nivelNodo;
+                        System.out.println("La altura es: " + alturaNodo);
+                    }
+
+                    break;
+
+                case 12:
+                    String pri = JOptionPane.showInputDialog("Ingrese la letra a la que le buscaremos su primo hermano:");
+                    char buscado = pri.charAt(0);
+                   arbol.resultado=null;
+                    arbol.primoshermanos(arbol.raiz, buscado);
+                    
+                    if (arbol.resultado!= null) {
+                        if (arbol.resultado.getLI() != null) {
+                            System.out.println("Primo: " + arbol.resultado.getLI().getDato());
+                        }
+                        if (arbol.resultado.getLD() != null) {
+                            System.out.println("Primo: " + arbol.resultado.getLD().getDato());
+                        }
+                    } else {
+                        System.out.println("No tiene primos");
+                    }
+
+                    break;
+
+                case 13:
+                    String an = JOptionPane.showInputDialog("Ingrese la letra a la que le buscaremos sus ancestros:");
+                    char ances = an.charAt(0);
+
+                    arbol.mostrarancestros(arbol.raiz, ances);
+
+                    break;
+
+                case 0:
+                    JOptionPane.showMessageDialog(null, "Saliendo...");
+                    break;
+
+                default:
+                    JOptionPane.showMessageDialog(null, "Opcion invalida");
+            }
+
+        } while (opc != 0);
+    }
+}
