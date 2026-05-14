@@ -1,0 +1,54 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package arboles;
+
+
+public class Nodo {
+    private  Nodo LI, LD;
+private char Dato;
+private int factorbalance;
+
+    public int getFactorbalance() {
+        return factorbalance;
+    }
+
+    public void setFactorbalance(int factorbalance) {
+        this.factorbalance = factorbalance;
+    }
+
+
+    public Nodo( char Dato) {
+        this.LI = null;
+        this.LD = null;
+        this.Dato = Dato;
+        this.factorbalance=0;
+    }
+
+    public void setLI(Nodo LI) {
+        this.LI = LI;
+    }
+
+    public Nodo getLI() {
+        return LI;
+    }
+
+    public Nodo getLD() {
+        return LD;
+    }
+
+    public char getDato() {
+        return Dato;
+    }
+
+    public void setLD(Nodo LD) {
+        this.LD = LD;
+    }
+
+    public void setDato(char Dato) {
+        this.Dato = Dato;
+    }
+
+
+}
