@@ -1,0 +1,59 @@
+package arboles;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class DibujarArbol extends JPanel {
+
+    Nodo raiz;
+
+    public DibujarArbol(Nodo raiz) {
+        this.raiz = raiz;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        dibujar(g, raiz, 400, 50, 200);
+    }
+
+    public void dibujar(Graphics g, Nodo nodo, int x, int y, int separacion) {
+
+        if (nodo == null) {
+            return;
+        }
+
+        // dibujar cÃ­rculo
+        g.drawOval(x, y, 40, 40);
+
+        // dibujar letra
+        g.drawString(String.valueOf(nodo.getDato()), x + 18, y + 25);
+
+        // hijo izquierdo
+        if (nodo.getLI() != null) {
+
+            g.drawLine(x + 20, y + 40,
+                    x - separacion + 20, y + 100);
+
+            dibujar(g,
+                    nodo.getLI(),
+                    x - separacion,
+                    y + 100,
+                    separacion / 2);
+        }
+
+        // hijo derecho
+        if (nodo.getLD() != null) {
+
+            g.drawLine(x + 20, y + 40,
+                    x + separacion + 20, y + 100);
+
+            dibujar(g,
+                    nodo.getLD(),
+                    x + separacion,
+                    y + 100,
+                    separacion / 2);
+        }
+    }
+}
